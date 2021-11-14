@@ -81,3 +81,24 @@ console.log(k1 === k2, k1 === k3)
 
 import * as l2 from 'l/wildcard-literal'
 console.log(l2)
+
+// Will work. Subpath dot import specifier is taken literally. Only root dot has special semantics.
+import * as m from 'm/sub-dot/.'
+console.log(m)
+
+// Will not work. Module specifier of just "*" does not permit importing in any way.
+// import * as n from 'n'
+
+// Will not work.
+// Error [ERR_INVALID_PACKAGE_TARGET]: Invalid "exports" target "*" defined for './*' in the package config /Users/jasonkuhrt/foobar/node_modules/o/package.json imported from /Users/jasonkuhrt/foobar/main.mjs; targets must start with "./"
+// import * as o from 'o/anything'
+
+// Will not work.
+// TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension "" for /Users/jasonkuhrt/foobar/node_modules/p/foo/oneBar
+// import * as p1 from 'p/one'
+// import * as p2 from 'p/two'
+
+// This will work. The trailing dot given by consumer appended with the wildcard suffix leads to a complete file path.
+// NOTE This is quite esoteric.
+import * as q from 'q/one.'
+console.log(q)
