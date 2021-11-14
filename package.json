@@ -1,4 +1,7 @@
 {
   "name": "research-package-exports",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node --experimental-json-modules main.mjs"
+  }
 }
