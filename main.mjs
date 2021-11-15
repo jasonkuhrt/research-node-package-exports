@@ -102,3 +102,21 @@ console.log(m)
 // NOTE This is quite esoteric.
 import * as q from 'q/one.'
 console.log(q)
+
+// import specifier infix
+
+// Will work. Asterisks are replaced with whatever consumer gives
+import * as r1 from 'r/f*o'
+import * as r2 from 'r/foo'
+import * as r3 from 'r/foooooooooooooooooooooooooooooooooooooooooooooooo'
+console.log(r1 === r2, r1 === r3)
+
+// This will fail. "fo" does not match "f*o"
+// import * as r4 from 'r/fo'
+
+// This will fail. "e" in "foe" does not match "o" in "f*o"
+// import * as r5 from 'r/foe'
+
+// import specifier prefix
+// Error [ERR_INVALID_PACKAGE_CONFIG]: Invalid package config /Users/jasonkuhrt/foobar/node_modules/r/package.json while importing file:///Users/jasonkuhrt/foobar/main.mjs. "exports" cannot contain some keys starting with '.' and some not. The exports object must either be an object of package subpath keys or an object of main entry condition name keys only.
+import * as s from 's/oo'
