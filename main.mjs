@@ -119,4 +119,13 @@ console.log(r1 === r2, r1 === r3)
 
 // import specifier prefix
 // Error [ERR_INVALID_PACKAGE_CONFIG]: Invalid package config /Users/jasonkuhrt/foobar/node_modules/r/package.json while importing file:///Users/jasonkuhrt/foobar/main.mjs. "exports" cannot contain some keys starting with '.' and some not. The exports object must either be an object of package subpath keys or an object of main entry condition name keys only.
-import * as s from 's/oo'
+// import * as s from 's/oo'
+
+// This will fail. Node takes the first file path it finds.
+// TODO But then what is it for? https://github.com/nodejs/node/issues/37928#issuecomment-974536376
+// https://github.com/nodejs/node/blob/master/lib/internal/modules/esm/resolve.js <-- mentioned in the stack trace.
+import * as t from 't'
+
+// This will work. Node skips the null value in the array.
+import * as u from 'u'
+console.log(u)
