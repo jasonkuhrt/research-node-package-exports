@@ -124,7 +124,7 @@ console.log(r1 === r2, r1 === r3)
 // This will fail. Node takes the first file path it finds.
 // TODO But then what is it for? https://github.com/nodejs/node/issues/37928#issuecomment-974536376
 // https://github.com/nodejs/node/blob/master/lib/internal/modules/esm/resolve.js <-- mentioned in the stack trace.
-import * as t from 't'
+// import * as t from 't'
 
 // This will work. Node skips the null value in the array.
 import * as u from 'u'
